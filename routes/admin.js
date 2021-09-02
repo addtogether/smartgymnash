@@ -1,6 +1,7 @@
 const express = require('express');
+const passport = require('passport');
+const { ensureAuthenticated } = require('../config/auth');
 const router = express.Router();
-
 
 // all admin endpoints here
 
@@ -9,12 +10,23 @@ router.get('/',(req,res) => {
 });
 
 
-router.post('/dashboard',(req,res) => {
-    // fetching form data
-    const {email,password} = req.body;
-    //console.log(email,password);
-    res.send('successful login ,Admin dashboard page here');
-})
+router.get('/dashboard',ensureAuthenticated,(req,res) => {
+    res.render('adminDashboard');
+});
+
+// Login
+router.post('/login', (req, res, next) => {
+    passport.authenticate('admin', {
+    successRedirect: '/admin/dashboard',
+    failureRedirect: '/',
+  })(req, res, next);
+});
+
+// logout
+router.get('/logout',(req,res,next) => {
+    req.logout();
+    res.redirect('/');
+});
 
 
 module.exports = router;
