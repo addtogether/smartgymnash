@@ -9,5 +9,12 @@ router.get('/',(req,res) => {
 });
 
 
+router.post('/dashboard',(req,res) => {
+    // fetching form data
+    const {email,password} = req.body;
+    //console.log(email,password);
+    res.send('successful login ,Admin dashboard page here');
+})
+
 
 module.exports = router;

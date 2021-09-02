@@ -18,11 +18,16 @@ app.set('views',path.join(__dirname,'/views'));
 // Setting static files path 
 app.use(express.static(path.join(__dirname,'/public')));
 
+// Body parser middleware
+app.use(express.urlencoded({
+    extended:false
+}));
 
 // Routing
 app.use('/',mainRouter);
 app.use('/member',memberRouter);
 app.use('/admin',adminRouter);
+
 
 
 // testing purpose
