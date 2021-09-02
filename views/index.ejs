@@ -148,9 +148,9 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="bs-text">
-                        <h2>registration now to get more deals</h2>
+                        <h2>Register Now to Become a Member</h2>
                         <div class="bt-tips">Where health, beauty and fitness meet.</div>
-                        <a href="#" class="primary-btn  btn-normal">Register</a>
+                        <a href="#" data-toggle="modal" data-target="#memberRegistrationForm" class="primary-btn  btn-normal">Register</a>
                     </div>
                 </div>
             </div>
@@ -347,7 +347,7 @@
     <!-- Search model end -->
 
     <!-- Member login Modal form -->
-    <form action="/member/dashboard" method="POST">
+    <form action="/member/login" method="POST">
     <div class="modal fade" id="memberLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -390,7 +390,7 @@
 
 
     <!-- Admin Login Modal form -->
-    <form action="/admin/dashboard" method="POST">
+    <form action="/admin/login" method="POST">
     <div class="modal fade" id="adminLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -428,9 +428,74 @@
         </div>
     </div>
     </form>
-   <!-- modal form ends -->
+   <!-- Modal form ends -->
 
 
+   
+    <!-- Member Registration  Modal form -->
+    <form action="/member/register" method="POST">
+        <div class="modal fade" id="memberRegistrationForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Become A Member <i class="bi bi-person-plus-fill"></i></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-2">
+                            <label for="name">Enter Your Name</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-pencil-square"></i></span>
+                                <input type="text" id="name" name="name" class="form-control"
+                                    placeholder="Enter your Name" aria-label="name" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="md-form mb-2">
+                            <label for="city">Enter Your City</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt-fill"></i></span>
+                                <input type="text" id="city" name="city" class="form-control"
+                                    placeholder="Enter your City" aria-label="city" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="md-form mb-2">
+                            <label for="contact_no">Enter Your Contact No</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-telephone-fill"></i></span>
+                                <input type="text" id="contact_no" name="contact_no" class="form-control"
+                                    placeholder="Enter your Contact No" aria-label="contact_no" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="md-form mb-2">
+                            <label for="email">Enter Your Email</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-fill"></i></span>
+                                <input type="email" id="email" name="email" class="form-control"
+                                    placeholder="Enter your email" aria-label="email" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+    
+                        <div class="md-form mb-2">
+                            <label for="password">Enter Your Password</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-eye-slash-fill"></i></span>
+                                <input type="password" id="password" name="password" class="form-control"
+                                    placeholder="Enter your password" aria-label="password" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-outline-danger">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- modal form ends -->
 
 
     <!-- Js Plugins -->
@@ -442,7 +507,7 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
+   
 
 
 </body>
