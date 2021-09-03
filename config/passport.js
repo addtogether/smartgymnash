@@ -12,7 +12,7 @@ module.exports = function(passport){
             User.findOne({email:email,password:password})
             .then(user => {
                 if(!user){
-                    return done(null,false); 
+                    return done(null,false,{message:"Email or password error"}); 
                 }
                 else {
                     return done(null,user);
@@ -28,7 +28,7 @@ module.exports = function(passport){
            Admin.findOne({email:email,password:password})
            .then(admin => {
                if(!admin){
-                   return done(null,false);
+                   return done(null,false,{message:"Email Or Password error"});
                }
                else{
                    return done(null,admin);
