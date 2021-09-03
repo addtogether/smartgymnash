@@ -3,7 +3,9 @@ const router = express.Router();
 
 // endpoints
 router.get('/',(req,res) => {
-    res.render('index');
+    res.render('index',{
+        error:req.flash('error')
+    });
 });
 
 router.get('/about',(req,res) => {

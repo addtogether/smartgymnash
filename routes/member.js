@@ -12,17 +12,23 @@ router.get('/',(req,res) => {
 
 
 router.get('/dashboard',ensureAuthenticated,(req,res) => {
-    res.render('memberDashboard');
+    res.render('memberDashboard',{'user':req.user.name});
 });
 
 // New member registration
 router.post('/register',(req,res) => {
-    const {name,city,contact_no,email ,password} = req.body;
+    const {name,city,contact_no,email,password} = req.body;
+
+    if(password.length < 6){
+        req.flash('error','Password length should be greater than 5');
+        return res.redirect('/');
+    }
+
     User.findOne({email:email})
     .then(user => {
         if(user){
-            console.log(user.email);
-            res.send("User Exists");
+            req.flash('error','User already exists');
+            res.redirect('/');
         }
         else{
             const registration_date = new Date();
@@ -39,7 +45,8 @@ router.post('/register',(req,res) => {
             newRecord.save();
             res.send("registration successfull");
         }
-    })
+    });
+  
 });
 
 // Login
@@ -47,6 +54,7 @@ router.post('/login', (req, res, next) => {
       passport.authenticate('member', {
       successRedirect: '/member/dashboard',
       failureRedirect: '/',
+      failureFlash:true
     })(req, res, next);
 });
 

@@ -4,7 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
-
+const flash = require('connect-flash');
 const mainRouter = require('./routes/main');
 const memberRouter = require('./routes/member');
 const adminRouter = require('./routes/admin');
@@ -48,6 +48,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Use Connect flash
+app.use(flash());
 
 // Routing
 app.use('/',mainRouter);
