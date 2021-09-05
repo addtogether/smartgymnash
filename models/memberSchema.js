@@ -26,6 +26,10 @@ const schema = new  mongoose.Schema( {
         type:String,
         required:true
    },
+   trainer_id:{
+       type:String,
+       required:true
+   },
    type:{
         type:String,
         required:true

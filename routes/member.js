@@ -17,8 +17,8 @@ router.get('/dashboard',ensureAuthenticated,(req,res) => {
 
 // New member registration
 router.post('/register',(req,res) => {
-    const {name,city,contact_no,email,password} = req.body;
-
+    const {name,city,contact_no,email,password,trainers} = req.body;
+    console.log(trainers);
     if(password.length < 6){
         req.flash('error','Password length should be greater than 5');
         return res.redirect('/');
@@ -40,6 +40,7 @@ router.post('/register',(req,res) => {
                 registration_date,
                 email,
                 password,
+                trainers,
                 type
             });
             newRecord.save();

@@ -1,10 +1,13 @@
 const express = require('express');
+const Trainer = require('../models/trainerSchema');
 const router = express.Router();
 
 // endpoints
-router.get('/',(req,res) => {
+router.get('/',async (req,res) => {
+    const trainers = await Trainer.find();
     res.render('index',{
-        error:req.flash('error')
+         error:req.flash('error'),
+        'trainers':trainers
     });
 });
 
