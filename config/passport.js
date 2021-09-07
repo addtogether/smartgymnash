@@ -1,31 +1,41 @@
 const localStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
 const User = require('../models/memberSchema');
 const Admin = require('../models/adminSchema');
+const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 
-// Strategy for member authentication
+
 module.exports = function(passport){
+    // Strategy for member authentication
     passport.use('member',
         new localStrategy({usernameField:'email'},(email,password,done) => {
-            User.findOne({email:email,password:password})
+            User.findOne({email:email})
             .then(user => {
                 if(!user){
-                    return done(null,false,{message:"Email or password error"}); 
+                    return done(null,false,{message:"User with this email does not exist"}); 
                 }
                 else {
-                    return done(null,user);
+                      // Password Matching
+                bcrypt.compare(password, user.password, (err, isMatch) => {
+                    if (err) throw err;
+                    if (isMatch) {
+                        return done(null, user);
+                    } 
+                    else {
+                        return done(null, false, {message:'Wrong Password'});
+                    }
+                });
                 }
             })
             .catch(err => console.log(err));
 
         })
     )
-
+    // Strategy for admin authentication
     passport.use('admin',
            new localStrategy({usernameField:'email'},(email,password,done) => {
-           Admin.findOne({email:email,password:password})
+           Admin.findOne({email:email})
            .then(admin => {
                if(!admin){
                    return done(null,false,{message:"Email Or Password error"});

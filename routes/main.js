@@ -6,7 +6,6 @@ const router = express.Router();
 router.get('/',async (req,res) => {
     const trainers = await Trainer.find();
     res.render('index',{
-         error:req.flash('error'),
         'trainers':trainers
     });
 });

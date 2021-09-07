@@ -51,6 +51,13 @@ app.use(passport.session());
 // Use Connect flash
 app.use(flash());
 
+// Global variables - Store success and error messages 
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
+
 // Routing
 app.use('/',mainRouter);
 app.use('/member',memberRouter);

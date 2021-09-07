@@ -1,6 +1,6 @@
 const express = require('express');
 const passport = require('passport');
-const { ensureAuthenticated } = require('../config/auth');
+const { isAuth } = require('../config/auth');
 const router = express.Router();
 
 // all admin endpoints here
@@ -10,8 +10,8 @@ router.get('/',(req,res) => {
 });
 
 
-router.get('/dashboard',ensureAuthenticated,(req,res) => {
-    res.render('adminDashboard',{'admin':req.user.email});
+router.get('/dashboard',isAuth,(req,res) => {
+    res.render('adminDashboard',{'admin':req.user.name});
 });
 
 // Login

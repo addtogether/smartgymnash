@@ -81,9 +81,15 @@
         </div>
     </header>
     <!-- Header End -->
-    <% if (error.length > 0) { %>
+  
+    <!-- Alerts for success and error messages -->
+    <% if(error.length > 0){ %>
         <script>
             alert('<%= error %>');
+        </script>  
+    <% } else if(success.length > 0) { %>
+        <script>
+            alert('<%= success %>');
         </script>
     <% } %>
 
@@ -495,7 +501,7 @@
 
                         <div class="md-form mb-2">
                             <label for="trainersList">Select your Trainer (if any) </label>
-                                <select name="trainers" id="trainersList">
+                                <select name="trainer_id" id="trainersList">
                                     <option value="notSelected">-- Select Trainer --</option>
                                     <% if(trainers) { %>
                                         <% trainers.forEach(trainer => { %>
