@@ -1,7 +1,8 @@
 const express = require('express');
 const User = require('../models/memberSchema');
 const passport = require('passport');
-const { ensureAuthenticated } = require('../config/auth');
+const { isAuth } = require('../config/auth');
+const bcrypt = require('bcrypt');
 const router = express.Router();
 
 // all member endpoints here
@@ -11,14 +12,14 @@ router.get('/',(req,res) => {
 });
 
 
-router.get('/dashboard',ensureAuthenticated,(req,res) => {
+router.get('/dashboard',isAuth,(req,res) => {
     res.render('memberDashboard',{'user':req.user.name});
 });
 
 // New member registration
 router.post('/register',(req,res) => {
-    const {name,city,contact_no,email,password,trainers} = req.body;
-    console.log(trainers);
+    const {name,city,contact_no,email,trainer_id} = req.body;
+    var password = req.body.password;
     if(password.length < 6){
         req.flash('error','Password length should be greater than 5');
         return res.redirect('/');
@@ -30,21 +31,36 @@ router.post('/register',(req,res) => {
             req.flash('error','User already exists');
             res.redirect('/');
         }
-        else{
+        else{ 
+
+            const saltRounds = 10;  // Higher the salt value, more time for hashing
             const registration_date = new Date();
             const type = 'member';
-            const newRecord = new User({
-                name,
-                city,
-                contact_no,
-                registration_date,
-                email,
-                password,
-                trainers,
-                type
-            });
-            newRecord.save();
-            res.send("registration successfull");
+
+            bcrypt.genSalt(saltRounds, (err, salt) => {
+                bcrypt.hash(password, salt, (err, hash) => {
+                     if(err) throw err;
+                     else{
+
+                        password = hash;
+                        const newRecord = new User({
+                            name,
+                            city,
+                            contact_no,
+                            registration_date,
+                            email,
+                            password,
+                            trainer_id,
+                            type
+                        });
+                        newRecord.save();
+                        
+                        req.flash("success","Registration Successfull, Login with your Email and Password !!");
+                        res.redirect("/");
+                     }
+                });
+            });  
+        
         }
     });
   
@@ -55,7 +71,7 @@ router.post('/login', (req, res, next) => {
       passport.authenticate('member', {
       successRedirect: '/member/dashboard',
       failureRedirect: '/',
-      failureFlash:true
+      failureFlash:true,
     })(req, res, next);
 });
 
