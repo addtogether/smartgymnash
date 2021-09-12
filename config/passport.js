@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 
-
 module.exports = function(passport){
     // Strategy for member authentication
     passport.use('member',
@@ -35,7 +34,7 @@ module.exports = function(passport){
     // Strategy for admin authentication
     passport.use('admin',
            new localStrategy({usernameField:'email'},(email,password,done) => {
-           Admin.findOne({email:email})
+           Admin.findOne({email:email,password:password})
            .then(admin => {
                if(!admin){
                    return done(null,false,{message:"Email Or Password error"});
