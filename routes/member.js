@@ -37,6 +37,7 @@ router.post('/register',(req,res) => {
             const registration_date = new Date();
             const type = 'member';
 
+            // Password Hashing
             bcrypt.genSalt(saltRounds, (err, salt) => {
                 bcrypt.hash(password, salt, (err, hash) => {
                      if(err) throw err;
@@ -66,7 +67,7 @@ router.post('/register',(req,res) => {
   
 });
 
-// Login
+// Login handling
 router.post('/login', (req, res, next) => {
       passport.authenticate('member', {
       successRedirect: '/member/dashboard',
@@ -75,7 +76,7 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-// Logout
+// Logout 
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
