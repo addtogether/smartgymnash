@@ -22,7 +22,7 @@ app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'/views'));
 
 // Setting static files path 
-app.use(express.static(path.join(__dirname,'/public')));
+app.use(express.static('public'));
 
 // Connect to database
 const conn_string = 'mongodb+srv://rahul:rahul@cluster0.rb9pz.mongodb.net/smartGymnash?retryWrites=true&w=majority';

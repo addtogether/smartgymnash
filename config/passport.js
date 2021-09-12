@@ -16,16 +16,16 @@ module.exports = function(passport){
                     return done(null,false,{message:"User with this email does not exist"}); 
                 }
                 else {
-                      // Password Matching
-                bcrypt.compare(password, user.password, (err, isMatch) => {
-                    if (err) throw err;
-                    if (isMatch) {
-                        return done(null, user);
-                    } 
-                    else {
-                        return done(null, false, {message:'Wrong Password'});
-                    }
-                });
+                    // Password Matching
+                    bcrypt.compare(password, user.password, (err, isMatch) => {
+                        if (err) throw err;
+                        if (isMatch) {
+                            return done(null, user);
+                        } 
+                        else {
+                            return done(null, false, {message:'Wrong Password'});
+                        }
+                    });
                 }
             })
             .catch(err => console.log(err));
@@ -50,10 +50,12 @@ module.exports = function(passport){
 };
 
 
+// Serialize user adds authenticated user in session
 passport.serializeUser(function(user, done) {
      done(null,{id:user.id,type:user.type});
 });
   
+// Deserialize user gets the user from the session 
 passport.deserializeUser(function(obj, done) {
         if(obj.type == 'member'){
             User.findById(obj.id, function(err, user) {

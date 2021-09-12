@@ -29,5 +29,9 @@ router.get('/logout',(req,res,next) => {
     res.redirect('/');
 });
 
+router.get('/dashboard/stats',isAuth,(req,res) =>{
+    res.render('chart');
+})
+
 
 module.exports = router;

@@ -1,13 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>welcome <%= admin %></h1>
-    <a href="/admin/logout"> logout </a>
+    <title> Admin Dashboard </title>
+      <!-- Meta -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="description" content="Gradient Able Bootstrap admin template made using Bootstrap 4. The starter version of Gradient Able is completely free for personal project." />
+      <meta name="keywords" content="free dashboard template, free admin, free bootstrap template, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+      <meta name="author" content="codedthemes">
+      <!-- Favicon icon -->
+      <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+      <!-- Google font-->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap/css/bootstrap.min.css">
+      <!-- themify-icons line icon -->
+      <link rel="stylesheet" type="text/css" href="/assets/icon/themify-icons/themify-icons.css">
+	  <link rel="stylesheet" type="text/css" href="/assets/icon/font-awesome/css/font-awesome.min.css">
+      <script src="https://kit.fontawesome.com/5ab9576851.js" crossorigin="anonymous"></script>
+      <!-- Bootstrap icons -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+      <!-- ico font -->
+      <link rel="stylesheet" type="text/css" href="/assets/icon/icofont/css/icofont.css">
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+      <link rel="stylesheet" type="text/css" href="/assets/css/jquery.mCustomScrollbar.css">
+  </head>
+
+  <body>
+  <body>
+       <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <nav class="navbar header-navbar pcoded-header">
+               <div class="navbar-wrapper">
+                   <div class="navbar-logo">
+                       <a class="mobile-menu" id="mobile-collapse" href="#!">
+                           <i class="ti-menu"></i>
+                       </a>
+                       <div class="mobile-search">
+                           <div class="header-search">
+                               <div class="main-search morphsearch-search">
+                                   <div class="input-group">
+                                       <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                       <input type="text" class="form-control" placeholder="Enter Keyword">
+                                       <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <a href="#">
+                           <p>Welcome Admin</p>
+                       </a>
+                       <a class="mobile-options">
+                           <i class="ti-more"></i>
+                       </a>
+                   </div>
+
+                   <div class="navbar-container container-fluid">
+                       <ul class="nav-right">
+                           <li class="header-notification">
+                               <a href="#!">
+                                   <i class="ti-bell"></i>
+                                   <span class="badge bg-c-pink"></span>
+                               </a>
+                               <ul class="show-notification">
+                                   <li>
+                                       <h6>Notifications</h6>
+                                       <label class="label label-danger">New</label>
+                                   </li>
+                                   <li>
+                                       <div class="media">
+                                           <img class="d-flex align-self-center img-radius" src="/assets/images/avatar-2.jpg" alt="Generic placeholder image">
+                                           <div class="media-body">
+                                               <h5 class="notification-user">Rohit Sharma</h5>
+                                               <span class="notification-time">30 minutes ago</span>
+                                           </div>
+                                       </div>
+                                   </li>
+                                   <li>
+                                       <div class="media">
+                                           <img class="d-flex align-self-center img-radius" src="/assets/images/avatar-4.jpg" alt="Generic placeholder image">
+                                           <div class="media-body">
+                                               <h5 class="notification-user">Lord Shardul</h5>
+                                               <span class="notification-time">30 minutes ago</span>
+                                           </div>
+                                       </div>
+                                   </li>
+                                   <li>
+                                       <div class="media">
+                                           <img class="d-flex align-self-center img-radius" src="/assets/images/avatar-4.jpg" alt="Generic placeholder image">
+                                           <div class="media-body">
+                                               <h5 class="notification-user">Bumrah</h5>
+                                               <span class="notification-time">30 minutes ago</span>
+                                           </div>
+                                       </div>
+                                   </li>
+                               </ul>
+                           </li>
+                           
+                           <li class="user-profile header-notification">
+                               <a href="#!">
+                                   <img src="/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                   <span>Admin</span>
+                                   <i class="ti-angle-down"></i>
+                               </a>
+                               <ul class="show-notification profile-notification">
+                                   <li>
+                                       <a href="#"> Settings </a>
+                                   </li>
+                                   <li>
+                                       <a href="/admin/logout"> Logout </a>
+                                   </li>
+                               </ul>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+           </nav>
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="active">
+                                    <a href="#">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Chart</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li>
+                                    <a href="/admin/dashboard/stats">
+                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Chart</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+
+                            </ul>                        
+                        </div>
+                    </nav>
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="page-body">
+                                      <div class="row">
+
+                                            <!-- order-card start -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-blue order-card">
+                                                    <div class="card-block">
+                                                        <h6 class="m-b-20">Total Trainers</h6>
+                                                        <h2 class="text-right"><i class="fas fa-user-tie f-left" aria-hidden="true"></i><span>486</span></h2>
+                                                        <p class="m-b-0">Available<span class="f-right">351</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-green order-card">
+                                                    <div class="card-block">
+                                                        <h6 class="m-b-20">Total Members</h6>
+                                                        <h2 class="text-right"><i class="fa fa-users f-left"></i><span>1641</span></h2>
+                                                        <p class="m-b-0">This Month<span class="f-right">213</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-yellow order-card">
+                                                    <div class="card-block">
+                                                        <h6 class="m-b-20">Total working Equipments</h6>
+                                                        <h2 class="text-right"><i class="fas fa-dumbbell f-left"></i><span>100</span></h2>
+                                                        <p class="m-b-0">Non working<span class="f-right">10</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-pink order-card">
+                                                    <div class="card-block">
+                                                        <h6 class="m-b-20">Toatal complaints</h6>
+                                                        <h2 class="text-right"><i class="bi bi-megaphone-fill f-left"></i><span>180</span></h2>
+                                                        <p class="m-b-0">This Month<span class="f-right">60</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- order-card end -->
+
+                                            <!-- statistic and process start -->
+                                            <div class="col-lg-8 col-md-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>Statistics</h5>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li><i class="fa fa-chevron-left"></i></li>
+                                                                <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                                <li><i class="fa fa-minus minimize-card"></i></li>
+                                                                <li><i class="fa fa-refresh reload-card"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <canvas id="Statistics-chart" height="200"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>Customer Feedback</h5>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <span class="d-block text-c-blue f-24 f-w-600 text-center">365247</span>
+                                                        <canvas id="feedback-chart" height="100"></canvas>
+                                                        <div class="row justify-content-center m-t-15">
+                                                            <div class="col-auto b-r-default m-t-5 m-b-5">
+                                                                <h4>83%</h4>
+                                                                <p class="text-success m-b-0"><i class="ti-hand-point-up m-r-5"></i>Positive</p>
+                                                            </div>
+                                                            <div class="col-auto m-t-5 m-b-5">
+                                                                <h4>17%</h4>
+                                                                <p class="text-danger m-b-0"><i class="ti-hand-point-down m-r-5"></i>Negative</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- statustic and process end -->
+											<!-- tabs card start -->
+                                            <div class="col-sm-12">
+                                                <div class="card tabs-card">
+                                                    <div class="card-block p-0">
+                                                        <!-- Nav tabs -->
+                                                        <ul class="nav nav-tabs md-tabs" role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active" data-toggle="tab" href="#home3" role="tab"><i class="fa fa-users"></i>All Members</a>
+                                                                <div class="slide"></div>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#profile3" role="tab"><i class="fas fa-user-tie"></i> All Trainers</a>
+                                                                <div class="slide"></div>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#messages3" role="tab"><i class="fas fa-dumbbell"></i>All Equipments</a>
+                                                                <div class="slide"></div>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#settings3" role="tab"><i class="bi bi-megaphone-fill"></i>All Reports</a>
+                                                                <div class="slide"></div>
+                                                            </li>
+                                                        </ul>
+                                                        <!-- Tab panes -->
+                                                        <div class="tab-content card-block">
+                                                            <div class="tab-pane active" id="home3" role="tabpanel">
+
+                                                                <div class="table-responsive">
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th>Profile Picture</th>
+                                                                            <th>Member Name</th>
+                                                                            <th>Registration Date</th>
+                                                                            <th>City</th>
+                                                                            <th>Contact No</th>
+                                                                            <!-- <th>Transaction ID</th> -->
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><img src="/assets/images/product/prod2.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <td>Hrithik Pandey</td>
+                                                                            <td>12-09-2021</td>
+                                                                            <td>Mumbai</td>
+                                                                            <!-- <td><span class="label label-danger">Faild</span></td> -->
+                                                                            <td>7234486123</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><img src="/assets/images/product/prod3.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <td>Sagar Pachare</td>
+                                                                            <td>12-09-2021</td>
+                                                                            <td>Nagpur</td>
+                                                                            <!-- <td><span class="label label-success">Delivered</span></td> -->
+                                                                            <td>7234417123</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><img src="/assets/images/product/prod4.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <td>Vishal Pandey</td>
+                                                                            <td>12-09-2021</td>
+                                                                            <td>Mumbai</td>
+                                                                            <!-- <td><span class="label label-warning">Pending</span></td> -->
+                                                                            <td>7234454123</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="text-center">
+                                                                    <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane" id="profile3" role="tabpanel">
+
+                                                                <div class="table-responsive">
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th>Pofile Picture</th>
+                                                                            <th>Trainer Name</th>
+                                                                            <th>Joining Date</th>
+                                                                            <th>Contact No</th>
+                                                                            <th>Total Reports</th>
+                                                                            <!-- <th>Transaction ID</th> -->
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><img src="/assets/images/product/prod3.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <td>Hrithik Pandey</td>
+                                                                            <td>12-09-2021</td>
+                                                                            <td>123456789</td>
+                                                                            <!-- <td><span class="label label-success">Delivered</span></td> -->
+                                                                            <td>0</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><img src="/assets/images/product/prod4.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <td>Harsh Keniel</td>
+                                                                            <td>12-09-2021</td>
+                                                                            <td>120987345</td>
+                                                                            <!-- <td><span class="label label-warning">Pending</span></td> -->
+                                                                            <td>10</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="text-center">
+                                                                    <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane" id="messages3" role="tabpanel">
+
+                                                                <div class="table-responsive">
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th>Equipment</th>
+                                                                            <th>Equipment Name</th>
+                                                                            <th>Equipment Quantity</th>
+                                                                            <th>Equipment Reports</th>
+                                                                            <th>Availability Status</th>
+                                                                            <!-- <th>Status</th>
+                                                                            <th>Transaction ID</th> -->
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><img src="/assets/images/product/prod1.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <td>Dumbell</td>
+                                                                            <td>15</td>
+                                                                            <td>10</td>
+                                                                            <td><span class="label label-primary">Available</span></td>
+                                                                            <!-- <td>#7234421</td> -->
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><img src="/assets/images/product/prod4.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <td>Dumbell</td>
+                                                                            <td>20</td>
+                                                                            <td>4</td>
+                                                                            <td><span class="label label-warning">Not Available</span></td>
+                                                                            <!-- <td>#7234454</td> -->
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="text-center">
+                                                                    <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane" id="settings3" role="tabpanel">
+
+                                                                <div class="table-responsive">
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th>Report Id</th>
+                                                                            <th>Reported By</th>
+                                                                            <th>Report Date</th>
+                                                                            <th>Report Type</th>
+                                                                            <!-- <th>Status</th>
+                                                                            <th>Transaction ID</th> -->
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <!-- <td><img src="assets/images/product/prod1.jpg" alt="prod img" class="img-fluid"></td> -->
+                                                                            <td>#1</td>
+                                                                            <td>Vishal Pandey</td>
+                                                                            <td>06-01-2017</td>
+                                                                            <!-- <td><span class="label label-primary">Shipping</span></td> -->
+                                                                            <td>Trainer</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <!-- <td><img src="assets/images/product/prod2.jpg" alt="prod img" class="img-fluid"></td> -->
+                                                                            <td>#2</td>
+                                                                            <td>Hrithik Pandey</td>
+                                                                            <td>05-01-2017</td>
+                                                                            <!-- <td><span class="label label-danger">Faild</span></td> -->
+                                                                            <td>Equipment</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="text-center">
+                                                                    <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- tabs card end -->
+
+                                        </div>
+                                    </div>
+
+                                    <div id="styleSelector">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Required Jquery -->
+<script type="text/javascript" src="/assets/js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/assets/js/popper.js/popper.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap/js/bootstrap.min.js"></script>
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="/assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!-- modernizr js -->
+<script type="text/javascript" src="/assets/js/modernizr/modernizr.js"></script>
+<!-- am chart -->
+<script src="/assets/pages/widget/amchart/amcharts.min.js"></script>
+<script src="/assets/pages/widget/amchart/serial.min.js"></script>
+<!-- Chart js -->
+<script type="text/javascript" src="/assets/js/chart.js/Chart.js"></script>
+<!-- Todo js -->
+<script type="text/javascript " src="/assets/pages/todo/todo.js "></script>
+<!-- Custom js -->
+<script type="text/javascript" src="/assets/pages/dashboard/custom-dashboard.min.js"></script>
+<script type="text/javascript" src="/assets/js/script.js"></script>
+<script type="text/javascript " src="/assets/js/SmoothScroll.js"></script>
+<script src="/assets/js/pcoded.min.js"></script>
+<script src="/assets/js/vartical-demo.js"></script>
+<script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 </body>
+
 </html>
