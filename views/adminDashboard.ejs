@@ -117,6 +117,9 @@
                                </a>
                                <ul class="show-notification profile-notification">
                                    <li>
+                                       <a href="#"><%=adminEmail.email%></a>
+                                   </li>
+                                   <li>
                                        <a href="#"> Settings </a>
                                    </li>
                                    <li>
@@ -171,8 +174,8 @@
                                                 <div class="card bg-c-blue order-card">
                                                     <div class="card-block">
                                                         <h6 class="m-b-20">Total Trainers</h6>
-                                                        <h2 class="text-right"><i class="fas fa-user-tie f-left" aria-hidden="true"></i><span>486</span></h2>
-                                                        <p class="m-b-0">Available<span class="f-right">351</span></p>
+                                                        <h2 class="text-right"><i class="fas fa-user-tie f-left" aria-hidden="true"></i><span><%=trainers.length%></span></h2>
+                                                        <p class="m-b-0">Available<span class="f-right">1</span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,8 +183,8 @@
                                                 <div class="card bg-c-green order-card">
                                                     <div class="card-block">
                                                         <h6 class="m-b-20">Total Members</h6>
-                                                        <h2 class="text-right"><i class="fa fa-users f-left"></i><span>1641</span></h2>
-                                                        <p class="m-b-0">This Month<span class="f-right">213</span></p>
+                                                        <h2 class="text-right"><i class="fa fa-users f-left"></i><span><%=members.length%></span></h2>
+                                                        <p class="m-b-0">This Month<span class="f-right">4</span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -283,20 +286,24 @@
                                                                             <th>Contact No</th>
                                                                             <!-- <th>Transaction ID</th> -->
                                                                         </tr>
+                                                                        <% if(members.length > 0){ %>
+                                                                            <% members.forEach((member,index) => { %>
                                                                         <tr>
                                                                             <td><img src="/assets/images/product/prod2.jpg" alt="prod img" class="img-fluid"></td>
-                                                                            <td>Hrithik Pandey</td>
-                                                                            <td>12-09-2021</td>
-                                                                            <td>Mumbai</td>
+                                                                            <td><%= member.name %></td>
+                                                                            <td><%= member.registration_date%></td>
+                                                                            <td><%= member.city %></td>
                                                                             <!-- <td><span class="label label-danger">Faild</span></td> -->
-                                                                            <td>7234486123</td>
+                                                                            <td><%= member.contact_no%></td>
                                                                         </tr>
-                                                                        <tr>
+                                                                            <% }); %>
+                                                                        <% } %>
+                                                                        <!-- <tr>
                                                                             <td><img src="/assets/images/product/prod3.jpg" alt="prod img" class="img-fluid"></td>
                                                                             <td>Sagar Pachare</td>
                                                                             <td>12-09-2021</td>
                                                                             <td>Nagpur</td>
-                                                                            <!-- <td><span class="label label-success">Delivered</span></td> -->
+                                                                            
                                                                             <td>7234417123</td>
                                                                         </tr>
                                                                         <tr>
@@ -304,9 +311,9 @@
                                                                             <td>Vishal Pandey</td>
                                                                             <td>12-09-2021</td>
                                                                             <td>Mumbai</td>
-                                                                            <!-- <td><span class="label label-warning">Pending</span></td> -->
+                                                                          
                                                                             <td>7234454123</td>
-                                                                        </tr>
+                                                                        </tr> -->
                                                                     </table>
                                                                 </div>
                                                                 <div class="text-center">
@@ -322,25 +329,31 @@
                                                                             <th>Trainer Name</th>
                                                                             <th>Joining Date</th>
                                                                             <th>Contact No</th>
+                                                                            <th>Total Members</th>
                                                                             <th>Total Reports</th>
+                                                                            
                                                                             <!-- <th>Transaction ID</th> -->
                                                                         </tr>
+                                                                        <% if(trainers.length > 0) { %>
+                                                                            <% trainers.forEach((trainer,index) => { %>
                                                                         <tr>
                                                                             <td><img src="/assets/images/product/prod3.jpg" alt="prod img" class="img-fluid"></td>
-                                                                            <td>Hrithik Pandey</td>
-                                                                            <td>12-09-2021</td>
-                                                                            <td>123456789</td>
-                                                                            <!-- <td><span class="label label-success">Delivered</span></td> -->
+                                                                            <td><%=trainer.name%></td>
+                                                                            <td><%=trainer.registration_date%></td>
+                                                                            <td><%=trainer.contact_no%></td>
+                                                                             <td><%=trainer.members_cnt%></td>
                                                                             <td>0</td>
                                                                         </tr>
-                                                                        <tr>
+                                                                           <% }); %>
+                                                                        <% } %>
+                                                                        <!-- <tr>
                                                                             <td><img src="/assets/images/product/prod4.jpg" alt="prod img" class="img-fluid"></td>
                                                                             <td>Harsh Keniel</td>
                                                                             <td>12-09-2021</td>
                                                                             <td>120987345</td>
-                                                                            <!-- <td><span class="label label-warning">Pending</span></td> -->
+                                                                            
                                                                             <td>10</td>
-                                                                        </tr>
+                                                                        </tr> -->
                                                                     </table>
                                                                 </div>
                                                                 <div class="text-center">
