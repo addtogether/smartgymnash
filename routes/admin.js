@@ -1,6 +1,9 @@
 const express = require('express');
 const passport = require('passport');
 const { isAuth } = require('../config/auth');
+const Admin = require('../models/adminSchema');
+const User = require('../models/memberSchema');
+const Trainer = require('../models/trainerSchema');
 const router = express.Router();
 
 // all admin endpoints here
@@ -10,8 +13,15 @@ router.get('/',(req,res) => {
 });
 
 
-router.get('/dashboard',isAuth,(req,res) => {
-    res.render('adminDashboard',{'admin':req.user.name});
+router.get('/dashboard',isAuth,async (req,res) => {
+    let adminEmail = await Admin.findOne({_id:req.user.id});
+    let members = await User.find();
+    let trainers = await Trainer.find();
+    res.render('adminDashboard',{
+        'adminEmail': adminEmail,
+        'members': members,
+        'trainers': trainers
+    });
 });
 
 // Login
