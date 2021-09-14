@@ -12,8 +12,9 @@ router.get('/',(req,res) => {
 });
 
 
-router.get('/dashboard',isAuth,(req,res) => {
-    res.render('memberDashboard',{'user':req.user.name});
+router.get('/dashboard',isAuth, async (req,res) => {
+    let data = await User.findOne({_id:req.user.id});
+    res.render('memberDashboard',{'member':data});
 });
 
 // New member registration
