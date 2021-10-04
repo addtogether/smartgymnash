@@ -27,6 +27,24 @@
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
       <link rel="stylesheet" type="text/css" href="/assets/css/jquery.mCustomScrollbar.css">
+      <style>
+          .danger{
+            border: 1px solid #ccc;
+            background-color:rgb(235, 92, 92);
+            padding:5px 8px;
+            color: antiquewhite;
+            width: 137px;
+
+          }
+          .success{
+            border: 1px solid #ccc;
+            background-color:rgb(92, 235, 128);
+            padding:5px 8px;
+            color: black;
+            width: 137px;
+            
+          }
+      </style>
   </head>
 
   <body>
@@ -79,16 +97,18 @@
                                        <h6>Notifications</h6>
                                        <label class="label label-danger">New</label>
                                    </li>
+                                   <% for(var i = 0;i < 3;i++){ %>
                                    <li>
                                        <div class="media">
-                                           <img class="d-flex align-self-center img-radius" src="/assets/images/avatar-2.jpg" alt="Generic placeholder image">
+                                           <img class="d-flex align-self-center img-radius" src="/img/newMemberProfile.jpg" alt="Generic placeholder image">
                                            <div class="media-body">
-                                               <h5 class="notification-user">Rohit Sharma</h5>
-                                               <span class="notification-time">30 minutes ago</span>
+                                               <h5 class="notification-user"><%=members[i].name%> Registered</h5>
+                                               <span class="notification-time"><%=members[i].registration_date%></span>
                                            </div>
                                        </div>
                                    </li>
-                                   <li>
+                                   <% } %>
+                                   <!-- <li>
                                        <div class="media">
                                            <img class="d-flex align-self-center img-radius" src="/assets/images/avatar-4.jpg" alt="Generic placeholder image">
                                            <div class="media-body">
@@ -105,7 +125,7 @@
                                                <span class="notification-time">30 minutes ago</span>
                                            </div>
                                        </div>
-                                   </li>
+                                   </li> -->
                                </ul>
                            </li>
                            
@@ -191,18 +211,18 @@
                                             <div class="col-md-6 col-xl-3">
                                                 <div class="card bg-c-yellow order-card">
                                                     <div class="card-block">
-                                                        <h6 class="m-b-20">Total working Equipments</h6>
-                                                        <h2 class="text-right"><i class="fas fa-dumbbell f-left"></i><span>100</span></h2>
-                                                        <p class="m-b-0">Non working<span class="f-right">10</span></p>
+                                                        <h6 class="m-b-20">Total Equipments</h6>
+                                                        <h2 class="text-right"><i class="fas fa-dumbbell f-left"></i><span><%=equipments.length%></span></h2>
+                                                        <p class="m-b-0">Working<span class="f-right"><%=working_equipments%></span></p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-xl-3">
                                                 <div class="card bg-c-pink order-card">
                                                     <div class="card-block">
-                                                        <h6 class="m-b-20">Toatal complaints</h6>
-                                                        <h2 class="text-right"><i class="bi bi-megaphone-fill f-left"></i><span>180</span></h2>
-                                                        <p class="m-b-0">This Month<span class="f-right">60</span></p>
+                                                        <h6 class="m-b-20">Total complaints</h6>
+                                                        <h2 class="text-right"><i class="bi bi-megaphone-fill f-left"></i><span><%=total_complaints%></span></h2>
+                                                        <p class="m-b-0">Equipment Reports<span class="f-right"><%=reports.length%></span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -298,22 +318,7 @@
                                                                         </tr>
                                                                             <% }); %>
                                                                         <% } %>
-                                                                        <!-- <tr>
-                                                                            <td><img src="/assets/images/product/prod3.jpg" alt="prod img" class="img-fluid"></td>
-                                                                            <td>Sagar Pachare</td>
-                                                                            <td>12-09-2021</td>
-                                                                            <td>Nagpur</td>
-                                                                            
-                                                                            <td>7234417123</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td><img src="/assets/images/product/prod4.jpg" alt="prod img" class="img-fluid"></td>
-                                                                            <td>Vishal Pandey</td>
-                                                                            <td>12-09-2021</td>
-                                                                            <td>Mumbai</td>
-                                                                          
-                                                                            <td>7234454123</td>
-                                                                        </tr> -->
+                                                                       
                                                                     </table>
                                                                 </div>
                                                                 <div class="text-center">
@@ -346,14 +351,7 @@
                                                                         </tr>
                                                                            <% }); %>
                                                                         <% } %>
-                                                                        <!-- <tr>
-                                                                            <td><img src="/assets/images/product/prod4.jpg" alt="prod img" class="img-fluid"></td>
-                                                                            <td>Harsh Keniel</td>
-                                                                            <td>12-09-2021</td>
-                                                                            <td>120987345</td>
-                                                                            
-                                                                            <td>10</td>
-                                                                        </tr> -->
+                                                                      
                                                                     </table>
                                                                 </div>
                                                                 <div class="text-center">
@@ -368,27 +366,31 @@
                                                                             <th>Equipment</th>
                                                                             <th>Equipment Name</th>
                                                                             <th>Equipment Quantity</th>
+                                                                            <!-- <th>Equipment Reports</th> -->
                                                                             <th>Equipment Reports</th>
-                                                                            <th>Availability Status</th>
-                                                                            <!-- <th>Status</th>
-                                                                            <th>Transaction ID</th> -->
+                                                                            <th>Fix Equipment</th>
+                                                                            <!-- <th>Transaction ID</th>  -->
                                                                         </tr>
+                                                                        <% for(var i = 0;i < equipments.length;i++) { %>
                                                                         <tr>
                                                                             <td><img src="/assets/images/product/prod1.jpg" alt="prod img" class="img-fluid"></td>
-                                                                            <td>Dumbell</td>
-                                                                            <td>15</td>
-                                                                            <td>10</td>
-                                                                            <td><span class="label label-primary">Available</span></td>
-                                                                            <!-- <td>#7234421</td> -->
+                                                                            <td><%=equipments[i].name%></td>
+                                                                            <td><%=equipments[i].total_cnt%></td>
+                                                                            <td><span class="label label-primary"><%=equipments[i].reports%></span></td>
+                                                                            <% if(equipments[i].reports > 5){ %>
+                                                                            <td>
+                                                                            <form action="/admin/dashboard/FixEquipment" method="POST">
+                                                                                 <input type="hidden" name="equipment_id" value="<%=equipments[i]._id%>">
+                                                                                 <button type="submit" class="danger">Fix Equipment</button>
+                                                                            </form>
+                                                                            </td>
+                                                                            <% } else { %>
+                                                                            <td><div style="cursor: pointer;" class="success">Equipment Working</div></td>
+                                                                            <% } %>
+
                                                                         </tr>
-                                                                        <tr>
-                                                                            <td><img src="/assets/images/product/prod4.jpg" alt="prod img" class="img-fluid"></td>
-                                                                            <td>Dumbell</td>
-                                                                            <td>20</td>
-                                                                            <td>4</td>
-                                                                            <td><span class="label label-warning">Not Available</span></td>
-                                                                            <!-- <td>#7234454</td> -->
-                                                                        </tr>
+                                                                        <% } %>
+                                                                       
                                                                     </table>
                                                                 </div>
                                                                 <div class="text-center">
@@ -402,27 +404,20 @@
                                                                         <tr>
                                                                             <th>Report Id</th>
                                                                             <th>Reported By</th>
+                                                                            <th>Reported For</th>
                                                                             <th>Report Date</th>
                                                                             <th>Report Type</th>
-                                                                            <!-- <th>Status</th>
-                                                                            <th>Transaction ID</th> -->
+                                                                           
                                                                         </tr>
+                                                                        <% for(var i = 0;i < reports.length;i++){ %>
                                                                         <tr>
-                                                                            <!-- <td><img src="assets/images/product/prod1.jpg" alt="prod img" class="img-fluid"></td> -->
-                                                                            <td>#1</td>
-                                                                            <td>Vishal Pandey</td>
-                                                                            <td>06-01-2017</td>
-                                                                            <!-- <td><span class="label label-primary">Shipping</span></td> -->
-                                                                            <td>Trainer</td>
+                                                                            <td><%=reports[i]._id%></td>
+                                                                            <td><%=reports[i].reported_by%></td>
+                                                                            <td><%=reports[i].reported_for%></td>
+                                                                            <td><%=reports[i].report_date%></td>
+                                                                            <td><%=reports[i].report_type%></td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <!-- <td><img src="assets/images/product/prod2.jpg" alt="prod img" class="img-fluid"></td> -->
-                                                                            <td>#2</td>
-                                                                            <td>Hrithik Pandey</td>
-                                                                            <td>05-01-2017</td>
-                                                                            <!-- <td><span class="label label-danger">Faild</span></td> -->
-                                                                            <td>Equipment</td>
-                                                                        </tr>
+                                                                        <% } %> 
                                                                     </table>
                                                                 </div>
                                                                 <div class="text-center">

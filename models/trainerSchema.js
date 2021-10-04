@@ -21,6 +21,10 @@ const schema = new  mongoose.Schema( {
     members_cnt:{
         type:Number,
         required:true
+    },
+    reports:{
+        type:Number,
+        required:true
     }
 
 });

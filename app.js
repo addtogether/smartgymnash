@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const mainRouter = require('./routes/main');
 const memberRouter = require('./routes/member');
 const adminRouter = require('./routes/admin');
+const cors = require('cors');
 
 require('./config/passport')(passport);
 
@@ -37,6 +38,10 @@ app.use(express.urlencoded({
     extended:false
 }));
 
+app.use(express.json());
+app.use(cors());
+
+
 // Express session middleware
 app.use(session({
     secret:'secret',
@@ -58,11 +63,17 @@ app.use((req, res, next) => {
     next();
 });
 
+// app.use(function(req, res, next) {
+//     res.header('Access-Control-Allow-Origin', "*");
+//     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+// });
+
 // Routing
 app.use('/',mainRouter);
 app.use('/member',memberRouter);
 app.use('/admin',adminRouter);
-
 
 
 // testing purpose
