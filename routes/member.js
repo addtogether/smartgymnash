@@ -3,6 +3,9 @@ const User = require('../models/memberSchema');
 const passport = require('passport');
 const { isAuth } = require('../config/auth');
 const bcrypt = require('bcrypt');
+const Equipment = require('../models/equipmentSchema');
+const Trainer = require('../models/trainerSchema');
+const Report = require('../models/reportSchema');
 const router = express.Router();
 
 // all member endpoints here
@@ -14,7 +17,17 @@ router.get('/',(req,res) => {
 
 router.get('/dashboard',isAuth, async (req,res) => {
     let data = await User.findOne({_id:req.user.id});
-    res.render('memberDashboard',{'member':data});
+    let equipments = await Equipment.find();
+    let trainerDetails;
+    if(req.user.trainer_id === "notSelected") trainerDetails = false;
+    else {
+        trainerDetails = await Trainer.findOne({_id:req.user.trainer_id});
+    }
+    res.render('memberDashboard',{
+        'member':data,
+        'equipments':equipments,
+        'trainerDetails':trainerDetails
+    });
 });
 
 // New member registration

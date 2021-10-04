@@ -30,6 +30,23 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.mCustomScrollbar.css">
+    <style>
+        .danger{
+            border: 1px solid #ccc;
+            background-color:rgb(235, 92, 92);
+            padding:5px 8px;
+            color: antiquewhite;
+            width: 80px;
+        }
+        .report-success{
+            border: 1px solid #ccc;
+            background-color:rgb(56, 202, 112);
+            padding:5px 8px;
+            color: black;
+            width: 80px;
+        }
+    </style>
+    
 </head>
 
 <body>
@@ -82,8 +99,9 @@
                                         <i class="ti-angle-down"></i>
                                     </a>
                                     <ul class="show-notification profile-notification">
+                                        
                                         <li>
-                                            <a href="#"> Settings </a>
+                                            <a href="#" data-toggle="modal" data-target="#memberProfileModal"> Profile </a>
                                         </li>
                                         <li>
                                             <a href="/member/logout"> Logout </a>
@@ -234,34 +252,26 @@
                                                                                     <th>Equipment Name</th>
                                                                                     <th>Equipment Quantity</th>
                                                                                     <th>Equipment Reports</th>
-                                                                                    <th>Availability Status</th>
-                                                                                    <!-- <th>Status</th>
-                                                                            <th>Transaction ID</th> -->
+                                                                                    <th>Report</th>
+                                                                                   
                                                                                 </tr>
+                                                                                <% for(var i = 0;i < equipments.length;i++){ %>
                                                                                 <tr>
                                                                                     <td><img src="/assets/images/product/prod1.jpg"
                                                                                             alt="prod img"
                                                                                             class="img-fluid"></td>
-                                                                                    <td>Dumbell</td>
-                                                                                    <td>15</td>
-                                                                                    <td>10</td>
-                                                                                    <td><span
-                                                                                            class="label label-primary">Available</span>
+                                                                                    <td><%=equipments[i].name%></td>
+                                                                                    <td><%=equipments[i].total_cnt%></td>
+                                                                                    <td><span id="<%=equipments[i]._id%>"
+                                                                                            class="label label-primary"><%=equipments[i].reports%></span>
                                                                                     </td>
-                                                                                    <!-- <td>#7234421</td> -->
+                                                                                    <td>
+                                                                                        <button id="<%=equipments[i]._id%>-<%=equipments[i].reports%>" onclick="reportBtnChange(this.id)" class="danger">Report</button>
+                                                                                    </td>
+                                                                                   
                                                                                 </tr>
-                                                                                <tr>
-                                                                                    <td><img src="/assets/images/product/prod4.jpg"
-                                                                                            alt="prod img"
-                                                                                            class="img-fluid"></td>
-                                                                                    <td>Dumbell</td>
-                                                                                    <td>20</td>
-                                                                                    <td>4</td>
-                                                                                    <td><span
-                                                                                            class="label label-warning">Not
-                                                                                            Available</span></td>
-                                                                                    <!-- <td>#7234454</td> -->
-                                                                                </tr>
+                                                                                <% } %>
+                                                                              
                                                                             </table>
                                                                         </div>
                                                                         <div class="text-center">
@@ -293,6 +303,7 @@
             </div>
 
             <!-- Trainer Profile modal -->
+    
             <div class="modal fade" id="trainerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -306,34 +317,33 @@
                         </div>
                         <div class="modal-body mx-3">
                             <div class="md-form mb-2">
-                                <label for="tname"> Trainer Name</label>
-                                <input type="text" id="tname" name="name" value="Hrithik Pandey" class="form-control"
+                                <label for="tname">Trainer Name</label>
+                                <input type="text" id="tname" name="name" value="<%=trainerDetails.name%>" class="form-control"
                                     placeholder="" aria-label="tdate" aria-describedby="basic-addon1" readonly>
                             </div>
 
                             <div class="md-form mb-2">
                                 <label for="tdate">Trainer Joining Date </label>
-                                <input type="text" id="tdate" name="tdate" value="13-09-2021" class="form-control"
+                                <input type="text" id="tdate" name="tdate" value="<%=trainerDetails.registration_date%>" class="form-control"
                                     placeholder="" aria-label="tdate" aria-describedby="basic-addon1" readonly>
 
                             </div>
 
                             <div class="md-form mb-2">
                                 <label for="tcontact">Trainer Contact Number </label>
-                                <input type="text" id="tcontact" name="tcontact" value="7012830231" class="form-control"
+                                <input type="text" id="tcontact" name="tcontact" value="<%=trainerDetails.contact_no%>" class="form-control"
                                     placeholder="" aria-label="tcontact" aria-describedby="basic-addon1" readonly>
 
                             </div>
-
-
+                           
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-outline-danger">Report</button>
+                            <button type="submit" class="btn btn-outline-danger">Report</button>
                         </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Trainer Profile Modal ends -->
 
             <!-- Member Profile Modal -->
@@ -409,5 +419,39 @@
             <script src="/assets/js/vartical-demo.js"></script>
             <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
     </body>
+    <script>
+        function reportBtnChange(id){
+        $(`#${id}`).html("Reported");
+        $(`#${id}`).removeClass("danger");
+        $(`#${id}`).addClass("report-success");
+        $(`#${id}`).attr("disabled",true); 
+        let s = id.split("-");
+        let equipment_id = s[0];
+        let reportCnt = parseInt(s[1]) + 1;
+        $(`#${equipment_id}`).html(reportCnt);
+        let reported_by = "<%=member.name%>";
+        let user_id = "<%=member._id%>";
+        let object = {
+            method: "POST",                        // declares HTTP request method
+            headers: {
+              "Content-Type": "application/json",  // declares format of data
+              "Accept":"application/json"
+
+            },
+            body:JSON.stringify(           
+              {
+                "report": reportCnt,
+                "reported_by": reported_by,
+                "user_id":user_id,
+                "equipment_id":equipment_id
+
+              }
+            )
+            
+        };
+        
+        fetch("http://localhost:3000/updateReportCnt",object);
+     }
+    </script>
 
 </html>

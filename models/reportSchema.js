@@ -2,27 +2,34 @@ const mongoose = require('mongoose');
 
 // Equipment schema
 const schema = new  mongoose.Schema( {
-    equipment_id:{
-        type:Number,
+    reported_for_id:{
+        type:String,
         required:true
     },
     user_id:{
-        type:Number,
+        type:String,
         required:true
     },
-    user_name:{
+    reported_by:{
         type:String,
         required:true
     },
     report_date:{
         type:Date,
         required:true
+    },
+    report_type:{
+        type:String,
+        required:true
+    },
+    reported_for:{
+        type:String,
+        required:true
     }
-    
 
 });
 
 
-const Trainer = mongoose.model('equipmentReport',schema);
+const Report = mongoose.model('reports',schema);
 
-module.exports = EquipmentReport;
+module.exports = Report;

@@ -1,24 +1,27 @@
 const mongoose = require('mongoose');
 
 // Equipment schema
-const schema = new  mongoose.Schema( {
+const equipmentSchema = new  mongoose.Schema({
     equipment_id:{
+        type:String,
+        required:true
+    },
+    name:{
+        type:String,
+        required:true
+    },
+    total_cnt:{
         type:Number,
         required:true
     },
-    item_cnt:{
+    reports:{
         type:Number,
-        required:true
-    },
-    is_reported:{
-        type:Boolean,
         required:true
     }
     
-
 });
 
 
-const Trainer = mongoose.model('equipments',schema);
+const Equipment = mongoose.model('equipments',equipmentSchema);
 
 module.exports = Equipment;
