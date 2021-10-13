@@ -24,7 +24,7 @@ router.get('/dashboard',isAuth,async (req,res) => {
     let not_working = 0;
     let total_complaints = reports.length;
     for(var i = 0;i < equipments.length;i++){
-        if(equipments[i].reports > 5) not_working += 1;
+        if(equipments[i].reports > 2) not_working += 1;
     }
   
     let working_equipments = equipments.length - not_working;
@@ -66,7 +66,7 @@ router.post('/dashboard/FixEquipment',async (req,res) => {
              reports:0
          }
      });
-     let rUpdate = await EquipmentReport.deleteMany({equipment_id:equipment_id});
+     let rUpdate = await Equipment.deleteMany({equipment_id:equipment_id});
      res.redirect('/admin/dashboard');
 });
 

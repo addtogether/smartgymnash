@@ -6,8 +6,8 @@ const bcrypt = require('bcrypt');
 const Equipment = require('../models/equipmentSchema');
 const Trainer = require('../models/trainerSchema');
 const Report = require('../models/reportSchema');
+const sanitize  = require('mongo-sanitize');
 const router = express.Router();
-
 // all member endpoints here
 
 router.get('/',(req,res) => {
@@ -32,7 +32,10 @@ router.get('/dashboard',isAuth, async (req,res) => {
 
 // New member registration
 router.post('/register',(req,res) => {
-    const {name,city,contact_no,email,trainer_id} = req.body;
+    var {name,city,contact_no,email,trainer_id} = req.body;
+    name = sanitize(name);
+    city = sanitize(city);
+    contact_no = sanitize(contact_no);
     var password = req.body.password;
     if(password.length < 6){
         req.flash('error','Password length should be greater than 5');
@@ -50,6 +53,7 @@ router.post('/register',(req,res) => {
             const saltRounds = 10;  // Higher the salt value, more time for hashing
             const registration_date = new Date();
             const type = 'member';
+            const membership = new Date("2020-10-13T05:17:41.998+00:00");
 
             // Password Hashing
             bcrypt.genSalt(saltRounds, (err, salt) => {
@@ -66,6 +70,7 @@ router.post('/register',(req,res) => {
                             email,
                             password,
                             trainer_id,
+                            membership,
                             type
                         });
                         newRecord.save();
@@ -95,6 +100,16 @@ router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });
+
+// router.post('/dashboard/renew',async (req,res) => {
+//      let date =  new Date();
+//      let data = await User.findOneAndUpdate({_id:req.user.id},{
+//          $set:{
+//              membership:date
+//          }
+//      });
+//      res.redirect('/member/dashboard');
+// });
 
 
 module.exports = router;

@@ -30,23 +30,25 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
     <style>
-        .danger{
+        .danger {
             border: 1px solid #ccc;
-            background-color:rgb(235, 92, 92);
-            padding:5px 8px;
+            background-color: rgb(235, 92, 92);
+            padding: 5px 8px;
             color: antiquewhite;
             width: 80px;
         }
-        .report-success{
+
+        .report-success {
             border: 1px solid #ccc;
-            background-color:rgb(56, 202, 112);
-            padding:5px 8px;
+            background-color: rgb(56, 202, 112);
+            padding: 5px 8px;
             color: black;
             width: 80px;
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -95,13 +97,16 @@
                                     <a href="#">
                                         <img src="/assets/images/avatar-4.jpg" class="img-radius"
                                             alt="User-Profile-Image">
-                                        <span> <%= member.name %></span>
+                                        <span>
+                                            <%= member.name %>
+                                        </span>
                                         <i class="ti-angle-down"></i>
                                     </a>
                                     <ul class="show-notification profile-notification">
-                                        
+
                                         <li>
-                                            <a href="#" data-toggle="modal" data-target="#memberProfileModal"> Profile </a>
+                                            <a href="#" data-toggle="modal" data-target="#memberProfileModal"> Profile
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="/member/logout"> Logout </a>
@@ -164,6 +169,17 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Membership Plan</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#membershipModal">
+                                            <span class="pcoded-micon"><i class="bi bi-person"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">View
+                                                Status</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
 
                             </div>
                         </nav>
@@ -176,7 +192,7 @@
                                             <div class="row">
 
                                                 <!-- statistic and process start -->
-                                                <div class="col-lg-8 col-md-12">
+                                                <!-- <div class="col-lg-8 col-md-12">
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <h5>Statistics</h5>
@@ -220,7 +236,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!-- statustic and process end -->
 
                                                 <!-- tabs card start -->
@@ -253,25 +269,36 @@
                                                                                     <th>Equipment Quantity</th>
                                                                                     <th>Equipment Reports</th>
                                                                                     <th>Report</th>
-                                                                                   
+
                                                                                 </tr>
-                                                                                <% for(var i = 0;i < equipments.length;i++){ %>
-                                                                                <tr>
-                                                                                    <td><img src="/assets/images/product/prod1.jpg"
-                                                                                            alt="prod img"
-                                                                                            class="img-fluid"></td>
-                                                                                    <td><%=equipments[i].name%></td>
-                                                                                    <td><%=equipments[i].total_cnt%></td>
-                                                                                    <td><span id="<%=equipments[i]._id%>"
-                                                                                            class="label label-primary"><%=equipments[i].reports%></span>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <button id="<%=equipments[i]._id%>-<%=equipments[i].reports%>" onclick="reportBtnChange(this.id)" class="danger">Report</button>
-                                                                                    </td>
-                                                                                   
-                                                                                </tr>
-                                                                                <% } %>
-                                                                              
+                                                                                <% for(var i=0;i <
+                                                                                    equipments.length;i++){ %>
+                                                                                    <tr>
+                                                                                        <td><img src="/assets/images/product/prod1.jpg"
+                                                                                                alt="prod img"
+                                                                                                class="img-fluid"></td>
+                                                                                        <td>
+                                                                                            <%=equipments[i].name%>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%=equipments[i].total_cnt%>
+                                                                                        </td>
+                                                                                        <td><span
+                                                                                                id="<%=equipments[i]._id%>"
+                                                                                                class="label label-primary">
+                                                                                                <%=equipments[i].reports%>
+                                                                                            </span>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <button
+                                                                                                id="<%=equipments[i]._id%>-<%=equipments[i].reports%>"
+                                                                                                onclick="reportBtnChange(this.id)"
+                                                                                                class="danger">Report</button>
+                                                                                        </td>
+
+                                                                                    </tr>
+                                                                                    <% } %>
+
                                                                             </table>
                                                                         </div>
                                                                         <div class="text-center">
@@ -303,7 +330,7 @@
             </div>
 
             <!-- Trainer Profile modal -->
-    
+
             <div class="modal fade" id="trainerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -318,24 +345,27 @@
                         <div class="modal-body mx-3">
                             <div class="md-form mb-2">
                                 <label for="tname">Trainer Name</label>
-                                <input type="text" id="tname" name="name" value="<%=trainerDetails.name%>" class="form-control"
-                                    placeholder="" aria-label="tdate" aria-describedby="basic-addon1" readonly>
+                                <input type="text" id="tname" name="name" value="<%=trainerDetails.name%>"
+                                    class="form-control" placeholder="" aria-label="tdate"
+                                    aria-describedby="basic-addon1" readonly>
                             </div>
 
                             <div class="md-form mb-2">
                                 <label for="tdate">Trainer Joining Date </label>
-                                <input type="text" id="tdate" name="tdate" value="<%=trainerDetails.registration_date%>" class="form-control"
-                                    placeholder="" aria-label="tdate" aria-describedby="basic-addon1" readonly>
+                                <input type="text" id="tdate" name="tdate" value="<%=trainerDetails.registration_date%>"
+                                    class="form-control" placeholder="" aria-label="tdate"
+                                    aria-describedby="basic-addon1" readonly>
 
                             </div>
 
                             <div class="md-form mb-2">
                                 <label for="tcontact">Trainer Contact Number </label>
-                                <input type="text" id="tcontact" name="tcontact" value="<%=trainerDetails.contact_no%>" class="form-control"
-                                    placeholder="" aria-label="tcontact" aria-describedby="basic-addon1" readonly>
+                                <input type="text" id="tcontact" name="tcontact" value="<%=trainerDetails.contact_no%>"
+                                    class="form-control" placeholder="" aria-label="tcontact"
+                                    aria-describedby="basic-addon1" readonly>
 
                             </div>
-                           
+
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
                             <button type="submit" class="btn btn-outline-danger">Report</button>
@@ -343,7 +373,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Trainer Profile Modal ends -->
 
             <!-- Member Profile Modal -->
@@ -352,7 +382,8 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Your Profile <i class="bi bi-person-circle"></i></h4>
+                            <h4 class="modal-title w-100 font-weight-bold">Your Profile <i
+                                    class="bi bi-person-circle"></i></h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -373,15 +404,17 @@
 
                             <div class="md-form mb-2">
                                 <label for="contact">Contact No</label>
-                                <input type="text" id="contact" name="contact" value="<%=member.contact_no%>" class="form-control"
-                                    placeholder="" aria-label="contact" aria-describedby="basic-addon1" readonly>
+                                <input type="text" id="contact" name="contact" value="<%=member.contact_no%>"
+                                    class="form-control" placeholder="" aria-label="contact"
+                                    aria-describedby="basic-addon1" readonly>
 
                             </div>
 
                             <div class="md-form mb-2">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" value="<%=member.email%>" class="form-control"
-                                    placeholder="" aria-label="email" aria-describedby="basic-addon1" readonly>
+                                <input type="email" id="email" name="email" value="<%=member.email%>"
+                                    class="form-control" placeholder="" aria-label="email"
+                                    aria-describedby="basic-addon1" readonly>
 
                             </div>
 
@@ -394,6 +427,64 @@
                 </div>
             </div>
             <!-- Member Profile Modal ends -->
+
+            <!-- Membeship Modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Membership Status 
+                                <% var today  = new Date() %>
+                                <% var expiry = member.membership %>
+                                <% expiry.setMonth(expiry.getMonth() + 3) %>
+                                <% if(today > expiry) { %>
+                                <span class="membershipExpired">Expired</span>
+                                <% } else { %>
+                                <span class="membershipSuccess">Active</span>   
+                                <% } %>
+                             </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button> -->
+                        </div>
+                        <div class="modal-body">
+                            <div  id="countdown" class="countdown">
+                                <div class="time days">
+                                    <span id="days">0</span>
+                                    Days
+                                </div>
+                                <div  class="time hours">
+                                    <span id="hours">0</span>
+                                    Hours
+                                </div>
+                                <div class="time minutes">
+                                    <span id="minutes">0</span>
+                                    Minutes
+                                </div>
+                                <div  class="time seconds">
+                                    <span id="seconds">0</span>
+                                    Seconds
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"></button> -->
+                            <% if(today > expiry) { %>
+                                <!-- <form action="/member/dashboard/renew" method="POST"> -->
+                                    <button id="btn" type="submit" class="btn btn-primary">Renew</button>
+                                <!-- </form> -->
+                                <% } else { %>
+                                <button type="button" disabled class="btn btn-primary">Renew</button> 
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---->
 
             <!-- Required Jquery -->
             <script type="text/javascript" src="/assets/js/jquery/jquery.min.js"></script>
@@ -418,40 +509,77 @@
             <script src="/assets/js/pcoded.min.js"></script>
             <script src="/assets/js/vartical-demo.js"></script>
             <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script src="/js/payment.js"></script>
     </body>
+    <!-- Countdown Timer -->
     <script>
-        function reportBtnChange(id){
-        $(`#${id}`).html("Reported");
-        $(`#${id}`).removeClass("danger");
-        $(`#${id}`).addClass("report-success");
-        $(`#${id}`).attr("disabled",true); 
-        let s = id.split("-");
-        let equipment_id = s[0];
-        let reportCnt = parseInt(s[1]) + 1;
-        $(`#${equipment_id}`).html(reportCnt);
-        let reported_by = "<%=member.name%>";
-        let user_id = "<%=member._id%>";
-        let object = {
-            method: "POST",                        // declares HTTP request method
-            headers: {
-              "Content-Type": "application/json",  // declares format of data
-              "Accept":"application/json"
-
-            },
-            body:JSON.stringify(           
-              {
-                "report": reportCnt,
-                "reported_by": reported_by,
-                "user_id":user_id,
-                "equipment_id":equipment_id
-
-              }
-            )
-            
-        };
+        var expiryCountdown = new Date("<%=member.membership%>");
+        //expiryCountdown.setMonth(expiryCountdown.getMonth() + 3) 
+        var countDownDate = new Date(expiryCountdown).getTime();
+        //console.log(expiryCountdown);
+        // Update the count down every 1 second
+          var x = setInterval(function() {
         
-        fetch("http://localhost:3000/updateReportCnt",object);
-     }
+          var now = new Date().getTime();
+        
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+        
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+          document.getElementById("days").innerHTML = days;
+          document.getElementById("hours").innerHTML = hours;
+          document.getElementById("minutes").innerHTML = minutes;
+          document.getElementById("seconds").innerHTML = seconds;
+        
+          // If the count down is finished
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "Expired";
+          
+          }
+        }, 1000);
+     </script>
+
+     <!-- Report Increment -->
+    <script>
+        function reportBtnChange(id) {
+            $(`#${id}`).html("Reported");
+            $(`#${id}`).removeClass("danger");
+            $(`#${id}`).addClass("report-success");
+            $(`#${id}`).attr("disabled", true);
+            let s = id.split("-");
+            let equipment_id = s[0];
+            let reportCnt = parseInt(s[1]) + 1;
+            $(`#${equipment_id}`).html(reportCnt);
+            let reported_by = "<%=member.name%>";
+            let user_id = "<%=member._id%>";
+            let object = {
+                method: "POST",                        // declares HTTP request method
+                headers: {
+                    "Content-Type": "application/json",  // declares format of data
+                    "Accept": "application/json"
+
+                },
+                body: JSON.stringify(
+                    {
+                        "report": reportCnt,
+                        "reported_by": reported_by,
+                        "user_id": user_id,
+                        "equipment_id": equipment_id
+
+                    }
+                )
+
+            };
+
+            fetch("http://localhost:3000/updateReportCnt", object);
+        }
     </script>
 
 </html>

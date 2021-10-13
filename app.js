@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const mainRouter = require('./routes/main');
 const memberRouter = require('./routes/member');
 const adminRouter = require('./routes/admin');
+const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
 
 require('./config/passport')(passport);
@@ -24,6 +25,9 @@ app.set('views',path.join(__dirname,'/views'));
 
 // Setting static files path 
 app.use(express.static('public'));
+
+app.use(mongoSanitize());
+
 
 // Connect to database
 const conn_string = 'mongodb+srv://rahul:rahul@cluster0.rb9pz.mongodb.net/smartGymnash?retryWrites=true&w=majority';
@@ -63,17 +67,12 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.use(function(req, res, next) {
-//     res.header('Access-Control-Allow-Origin', "*");
-//     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type');
-//     next();
-// });
 
 // Routing
 app.use('/',mainRouter);
 app.use('/member',memberRouter);
 app.use('/admin',adminRouter);
+
 
 
 // testing purpose
