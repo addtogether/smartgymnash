@@ -2,6 +2,7 @@ const express = require('express');
 const Trainer = require('../models/trainerSchema');
 const Report = require('../models/reportSchema');
 const Equipment = require('../models/equipmentSchema');
+const User = require('../models/memberSchema');
 const router = express.Router();
 
 // endpoints
@@ -59,5 +60,18 @@ router.post('/updateReportCnt',async (req,res) =>{
     res.end();
    
 });
+
+router.post('/payment',async (req,res) => {
+   let payment_id = req.body.payment_id;
+   let date = new Date();
+   let payment = await User.findOneAndUpdate({_id:req.user.id},{
+       $set:{
+           payment_id:payment_id,
+           membership:date
+       }
+   });
+   res.redirect('/member/dashboard');
+    
+})
 
 module.exports = router;

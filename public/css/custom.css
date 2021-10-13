@@ -1,0 +1,55 @@
+.countdown{
+    display: flex;
+    flex-direction: row;
+}
+.time{
+    display: inline-block;
+    min-width: 120px;
+    margin: 15px;
+    height: 110px;
+    padding: 20px;
+    box-shadow: 1px 10px 20px rgb(0 0 0 / 20%);
+    border-radius: 4px;
+    background: #fff;
+    text-align: center;
+    font-weight: 400;
+    color: #212121;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 22px;
+}
+
+.time > span {
+    font-size: 45px;
+    line-height: 45px;
+    font-weight: 700;
+    display: block;
+    color: #212121;
+    margin-bottom: 10px;
+}
+
+.modal-dialog{
+   min-width: 50%;
+   max-width: fit-content !important;
+}
+
+.membershipSuccess{
+    font-size: smaller;
+    color: white;
+    border: 1px solid #ccc;
+    background-color: rgb(69, 182, 69);
+    padding: 3px;
+    border-radius: 12px;
+ 
+}
+
+.membershipExpired{
+    font-size: smaller;
+    color: white;
+    border: 1px solid #ccc;
+    background-color: rgb(223, 104, 104);
+    padding: 3px;
+    border-radius: 12px;
+ 
+}

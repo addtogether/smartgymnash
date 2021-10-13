@@ -229,7 +229,7 @@
                                             <!-- order-card end -->
 
                                             <!-- statistic and process start -->
-                                            <div class="col-lg-8 col-md-12">
+                                            <!-- <div class="col-lg-8 col-md-12">
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <h5>Statistics</h5>
@@ -267,7 +267,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- statustic and process end -->
 											<!-- tabs card start -->
                                             <div class="col-sm-12">
@@ -377,7 +377,7 @@
                                                                             <td><%=equipments[i].name%></td>
                                                                             <td><%=equipments[i].total_cnt%></td>
                                                                             <td><span class="label label-primary"><%=equipments[i].reports%></span></td>
-                                                                            <% if(equipments[i].reports > 5){ %>
+                                                                            <% if(equipments[i].reports > 2){ %>
                                                                             <td>
                                                                             <form action="/admin/dashboard/FixEquipment" method="POST">
                                                                                  <input type="hidden" name="equipment_id" value="<%=equipments[i]._id%>">
@@ -402,7 +402,7 @@
                                                                 <div class="table-responsive">
                                                                     <table class="table">
                                                                         <tr>
-                                                                            <th>Report Id</th>
+                                                                            <th>#</th>
                                                                             <th>Reported By</th>
                                                                             <th>Reported For</th>
                                                                             <th>Report Date</th>
@@ -411,7 +411,7 @@
                                                                         </tr>
                                                                         <% for(var i = 0;i < reports.length;i++){ %>
                                                                         <tr>
-                                                                            <td><%=reports[i]._id%></td>
+                                                                            <td><%=(i+1)%></td>
                                                                             <td><%=reports[i].reported_by%></td>
                                                                             <td><%=reports[i].reported_for%></td>
                                                                             <td><%=reports[i].report_date%></td>

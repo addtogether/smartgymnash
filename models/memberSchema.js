@@ -30,10 +30,17 @@ const schema = new  mongoose.Schema( {
        type:String,
        required:true
    },
+   membership:{
+       type:Date,
+       required:true
+   },
    type:{
         type:String,
         required:true
-   }
+   },
+   payment_id:{
+    type:String
+   },
 
 });
 
