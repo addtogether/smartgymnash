@@ -42,7 +42,8 @@ function dbhandler(res){
 
         };
         alert('Payment Successful');
-        fetch("http://localhost:3000/payment", object);
+        fetch("https://smartgymnash.herokuapp.com/payment", object);
+        //fetch("https://localhost:3000/payment", object);
 
         // //Ajax
         // let xhr = new XMLHttpRequest(); //creating XML object

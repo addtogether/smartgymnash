@@ -12,7 +12,7 @@ module.exports = function(passport){
             User.findOne({email:email})
             .then(user => {
                 if(!user){
-                    return done(null,false,{message:"User with this email does not exist"}); 
+                    return done(null,false,{message:"Email Or Password Error"}); 
                 }
                 else {
                     // Password Matching
@@ -22,7 +22,7 @@ module.exports = function(passport){
                             return done(null, user);
                         } 
                         else {
-                            return done(null, false, {message:'Wrong Password'});
+                            return done(null, false, {message:'Email Or Password Error'});
                         }
                     });
                 }

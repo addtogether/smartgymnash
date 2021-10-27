@@ -74,7 +74,13 @@ router.post('/register',(req,res) => {
                             type
                         });
                         newRecord.save();
-                        
+                        if(trainer_id !== "notSelected"){
+                            Trainer.findOneAndUpdate({_id:trainer_id},{
+                                $inc:{
+                                    members_cnt:1
+                                }
+                            });
+                        }
                         req.flash("success","Registration Successfull, Login with your Email and Password !!");
                         res.redirect("/");
                      }
@@ -99,6 +105,53 @@ router.post('/login', (req, res, next) => {
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
+});
+
+router.post('/dashboard/reportTrainer',async (req,res) => {
+    // const {user_id,reported_by,report,equipment_id} = req.body;
+    const user_id = req.user._id;
+    const reported_by = req.user.name;
+    const equipment_id = req.body.trainer_id;
+    const date = new Date();
+    let data =  await Trainer.findOneAndUpdate({_id:equipment_id},{
+        $inc:{
+            reports:1
+        }
+    });
+    let trainer = await Trainer.findOne({_id:equipment_id});
+    let trainer_name = trainer.name;
+    const newReport = Report({
+        user_id:user_id,
+        reported_for_id:equipment_id,
+        reported_by:reported_by,
+        reported_for:trainer_name,
+        report_date:date,
+        report_type:"Trainer"
+    });
+    
+    try{
+        req.flash("success","Trainer has been reported Successfully !!");
+        newReport.save();
+        
+    }
+    catch(error){
+        console.log(error);
+    }
+    res.redirect('/member/dashboard');
+});
+
+//update member information
+router.post('/updateinfo/:id', (req, res) => {
+    let id=req.params.id;
+    User.findByIdAndUpdate(id,{
+        name: req.body.name,
+        city: req.body.city,
+        contact_no : req.body.contact,
+    },(err,result)=>{
+        req.flash("success","Details Updated Successfully !!");
+        res.redirect('/member/dashboard')
+    });
+
 });
 
 // router.post('/dashboard/renew',async (req,res) => {
