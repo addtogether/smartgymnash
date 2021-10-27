@@ -1,8 +1,0 @@
-post http://localhost:3000/admin/dashboard/FixEquipment
-Content-Type: application/json
-
-{
-    "equipment_id":10
-}
-
-
