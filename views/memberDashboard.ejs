@@ -14,6 +14,7 @@
     <meta name="author" content="codedthemes">
     <!-- Favicon icon -->
     <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <!-- Required Fremwork -->
@@ -61,6 +62,17 @@
             </div>
         </div>
         <!-- Pre-loader end -->
+
+        <% if(error.length > 0){ %>
+            <script>
+                alert('<%= error %>');
+            </script>  
+        <% } else if(success.length > 0) { %>
+            <script>
+                alert('<%= success %>');
+            </script>
+        <% } %>
+
         <div id="pcoded" class="pcoded">
             <div class="pcoded-overlay-box"></div>
             <div class="pcoded-container navbar-wrapper">
@@ -134,7 +146,7 @@
                                     </li>
                                 </ul>
 
-                                <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Chart</div>
+                                <!-- <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Chart</div>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li>
                                         <a href="#">
@@ -143,7 +155,7 @@
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> -->
 
                                 <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Trainer</div>
                                 <ul class="pcoded-item pcoded-left-item">
@@ -274,7 +286,9 @@
                                                                                 <% for(var i=0;i <
                                                                                     equipments.length;i++){ %>
                                                                                     <tr>
-                                                                                        <td><img src="/assets/images/product/prod1.jpg"
+                                                                                        <td><img src="/img/img<%=equipments[i]._id%>.jpg"
+                                                                                               width="50"
+                                                                                               height="50"
                                                                                                 alt="prod img"
                                                                                                 class="img-fluid"></td>
                                                                                         <td>
@@ -330,7 +344,6 @@
             </div>
 
             <!-- Trainer Profile modal -->
-
             <div class="modal fade" id="trainerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -342,6 +355,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+
                         <div class="modal-body mx-3">
                             <div class="md-form mb-2">
                                 <label for="tname">Trainer Name</label>
@@ -368,16 +382,18 @@
 
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
-                            <button type="submit" class="btn btn-outline-danger">Report</button>
+                            <form action="/member/dashboard/reportTrainer" method="POST">
+                                <input type="hidden" name="trainer_id" value="<%=trainerDetails._id%>">
+                                <button type="submit" class="btn btn-outline-danger">Report</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- Trainer Profile Modal ends -->
 
             <!-- Member Profile Modal -->
-            <div class="modal fade" id="memberProfileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            <!-- <div class="modal fade" id="memberProfileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -425,7 +441,62 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+            <!-- Member Profile Modal -->
+            <div class="modal fade" id="memberProfileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Your Profile <i
+                                    class="bi bi-person-circle"></i></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/member/updateinfo/<%= member._id%>" method="post">
+                            <div class="modal-body mx-3">
+                            <div class="md-form mb-2">
+                                <label for="name"> Name</label>
+                                <input type="text" id="name" name="name" value="<%=member.name%>" class="form-control"
+                                    placeholder="" aria-label="name" aria-describedby="basic-addon1">
+                            </div>
+
+                            <div class="md-form mb-2">
+                                <label for="city">City </label>
+                                <input type="text" id="city" name="city" value="<%=member.city%>" class="form-control"
+                                    placeholder="" aria-label="city" aria-describedby="basic-addon1" >
+
+                            </div>
+
+                            <div class="md-form mb-2">
+                                <label for="contact">Contact No</label>
+                                <input type="text" id="contact" name="contact" value="<%=member.contact_no%>"
+                                    class="form-control" placeholder="" aria-label="contact"
+                                    aria-describedby="basic-addon1">
+
+                            </div>
+
+                            <div class="md-form mb-2">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" value="<%=member.email%>"
+                                    class="form-control" placeholder="" aria-label="email"
+                                    aria-describedby="basic-addon1" readonly>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="submit" class="btn btn-outline-danger">Update</button>
+                        </div>
+                            </form>
+                        
+                    </div>
+                </div>
             </div>
+            <!-- Member Profile Modal ends -->
             <!-- Member Profile Modal ends -->
 
             <!-- Membeship Modal -->
@@ -449,7 +520,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button> -->
+                           
                         </div>
                         <div class="modal-body">
                             <div  id="countdown" class="countdown">
@@ -475,7 +546,7 @@
                             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"></button> -->
                             <% if(today > expiry) { %>
                                 <!-- <form action="/member/dashboard/renew" method="POST"> -->
-                                    <button id="btn" type="submit" class="btn btn-primary">Renew</button>
+                                    <button id="btn" class="btn btn-primary">Renew</button>
                                 <!-- </form> -->
                                 <% } else { %>
                                 <button type="button" disabled class="btn btn-primary">Renew</button> 
@@ -577,9 +648,9 @@
                 )
 
             };
-
-            fetch("http://localhost:3000/updateReportCnt", object);
+            
+            //fetch("http://localhost:3000/updateReportCnt", object);
+            fetch("https://smartgymnash.herokuapp.com/updateReportCnt", object);
         }
     </script>
-
 </html>

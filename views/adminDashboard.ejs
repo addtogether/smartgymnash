@@ -100,7 +100,7 @@
                                    <% for(var i = 0;i < 3;i++){ %>
                                    <li>
                                        <div class="media">
-                                           <img class="d-flex align-self-center img-radius" src="/img/newMemberProfile.jpg" alt="Generic placeholder image">
+                                           <img class="d-flex align-self-center img-radius" src="/img/profile.png" alt="Generic placeholder image">
                                            <div class="media-body">
                                                <h5 class="notification-user"><%=members[i].name%> Registered</h5>
                                                <span class="notification-time"><%=members[i].registration_date%></span>
@@ -222,7 +222,7 @@
                                                     <div class="card-block">
                                                         <h6 class="m-b-20">Total complaints</h6>
                                                         <h2 class="text-right"><i class="bi bi-megaphone-fill f-left"></i><span><%=total_complaints%></span></h2>
-                                                        <p class="m-b-0">Equipment Reports<span class="f-right"><%=reports.length%></span></p>
+                                                        <p class="m-b-0">Equipment Reports<span class="f-right"><%=equipment_reports%></span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -309,7 +309,7 @@
                                                                         <% if(members.length > 0){ %>
                                                                             <% members.forEach((member,index) => { %>
                                                                         <tr>
-                                                                            <td><img src="/assets/images/product/prod2.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <td><img src="/img/profile.png" width="35" height="35" alt="prod img" class="img-fluid"></td>
                                                                             <td><%= member.name %></td>
                                                                             <td><%= member.registration_date%></td>
                                                                             <td><%= member.city %></td>
@@ -342,12 +342,12 @@
                                                                         <% if(trainers.length > 0) { %>
                                                                             <% trainers.forEach((trainer,index) => { %>
                                                                         <tr>
-                                                                            <td><img src="/assets/images/product/prod3.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <td><img src="/img/newMemberProfile.jpg" width="40" height="40" alt="prod img" class="img-fluid"></td>
                                                                             <td><%=trainer.name%></td>
                                                                             <td><%=trainer.registration_date%></td>
                                                                             <td><%=trainer.contact_no%></td>
-                                                                             <td><%=trainer.members_cnt%></td>
-                                                                            <td>0</td>
+                                                                            <td><%=trainer.members_cnt%></td>
+                                                                            <td><%=trainer.reports%></td>
                                                                         </tr>
                                                                            <% }); %>
                                                                         <% } %>
@@ -373,7 +373,8 @@
                                                                         </tr>
                                                                         <% for(var i = 0;i < equipments.length;i++) { %>
                                                                         <tr>
-                                                                            <td><img src="/assets/images/product/prod1.jpg" alt="prod img" class="img-fluid"></td>
+                                                                            <!-- <td><p>/img/<%=equipments[i]%>.jpg</p></td> -->
+                                                                            <td><img src="/img/img<%=equipments[i]._id%>.jpg" alt="prod img" width="50" height="50" class="img-fluid"></td>
                                                                             <td><%=equipments[i].name%></td>
                                                                             <td><%=equipments[i].total_cnt%></td>
                                                                             <td><span class="label label-primary"><%=equipments[i].reports%></span></td>

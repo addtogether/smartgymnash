@@ -21,8 +21,10 @@ router.get('/dashboard',isAuth,async (req,res) => {
     let trainers = await Trainer.find();
     let equipments = await Equipment.find();
     let reports = await Report.find();
+    let ereports = await Report.find({report_type:"Equipment"});
     let not_working = 0;
     let total_complaints = reports.length;
+    let equipment_reports = ereports.length;
     for(var i = 0;i < equipments.length;i++){
         if(equipments[i].reports > 2) not_working += 1;
     }
@@ -35,6 +37,7 @@ router.get('/dashboard',isAuth,async (req,res) => {
         'equipments':equipments,
         'working_equipments':working_equipments,
         'total_complaints':total_complaints,
+        'equipment_reports':equipment_reports,
         'reports':reports
     });
 });

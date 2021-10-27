@@ -41,6 +41,9 @@ const schema = new  mongoose.Schema( {
    payment_id:{
     type:String
    },
+   trainer_reported:{
+       type:Boolean
+   }
 
 });
 
