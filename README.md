@@ -15,7 +15,7 @@ in a gym
 Clone the project
 
 ```bash
-  git clone https://github.com/Hrithik2009/smartgymnash.git
+  git clone https://github.com/rahulp-github/smartgymnash.git
 ```
 
 Go to the project directory
